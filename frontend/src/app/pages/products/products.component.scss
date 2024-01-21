@@ -1,0 +1,120 @@
+$status-instock-color   : rgb(68, 121, 0);
+$status-lowstock-color  : rgb(155, 101, 0);
+$status-outofstock-color: rgb(184, 0, 0);
+
+main {
+  margin   : 0 auto;
+  max-width: 750px;
+}
+
+.caption {
+  display       : flex;
+  flex-direction: row;
+  gap           : 1rem;
+  align-items   : center;
+  padding       : 0.5rem;
+  border-bottom : 1px solid rgba(#000, 0.18);
+}
+
+.products {
+  display              : grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap             : 1rem;
+  padding              : 1rem 0;
+}
+
+.product {
+
+  padding        : 1rem;
+  border         : 1px solid rgba(#000, 0.18);
+  border-radius  : 0.5rem;
+  background     : linear-gradient(-30deg, rgba(#000, 0.1) 0%, rgba(#000, 0.0) 80%);
+  box-shadow     : 0rem 0.25rem 0.5rem rgba(#000, 0.25);
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : center;
+  gap            : 1rem;
+
+  .group {
+    display       : flex;
+    flex-direction: column;
+    gap           : 0rem;
+    align-items   : center;
+  }
+
+  .category {
+    display       : flex;
+    flex-direction: row;
+    gap           : 0.2rem;
+    align-items   : center;
+  }
+
+  .status {
+
+    // color        : rgba(#fff, 0.7);
+    font-weight    : 500;
+    padding        : 0rem 0.5rem;
+    border-radius  : 0.5rem;
+    line-height    : 1.5rem;
+    display        : flex;
+    flex-direction : row;
+    align-items    : center;
+    justify-content: center;
+    gap            : 0.3rem;
+
+    .badge {
+      border-radius: 100rem;
+      border       : 0.4rem solid rgba(#000, 0.18);
+    }
+
+    &.status-instock {
+
+      color: $status-instock-color;
+
+      .badge {
+        border-color: $status-instock-color;
+      }
+    }
+
+    &.status-lowstock {
+
+      color: $status-lowstock-color;
+
+      .badge {
+        border-color: $status-outofstock-color;
+      }
+    }
+
+    &.status-outofstock {
+
+      color: $status-outofstock-color;
+
+      .badge {
+        border-color: $status-outofstock-color;
+      }
+    }
+  }
+
+  .name {
+    font-weight: 700;
+    font-size  : 1.2rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .price-and-cart {
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-around;
+    align-items    : center;
+    width          : 100%;
+  }
+
+  .price {
+    font-size  : 1.5rem;
+    font-weight: 700;
+  }
+}

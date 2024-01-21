@@ -1,0 +1,54 @@
+<app-breadcrumb />
+<!--
+<p-table [value]="items" [paginator]="true" [rows]="10" [totalRecords]="total" [lazy]="true"
+  (onLazyLoad)="onLoad($event)" [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+  <ng-template pTemplate="caption">
+    <div class="flex justify-between gap-2">
+      Caption
+    </div>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+  </ng-template>
+</p-table> -->
+
+<main>
+
+  <div class="caption">
+    <span>Sort by</span>
+    <p-dropdown [options]="sortOptions" [(ngModel)]="sort" [style]="{width: '15rem'}"
+      (onChange)="refresh()"></p-dropdown>
+    <input type="text" pInputText placeholder="Search by name" [(ngModel)]="search" (input)="refresh()">
+  </div>
+
+  <p-dataView [value]="items" [totalRecords]="total" [rows]="12" [paginator]="true" [lazy]="true"
+    (onLazyLoad)="onLoad($event)">
+    <ng-template let-products pTemplate="list">
+      <div class="products">
+        <div *ngFor="let products of products" class="product">
+          <div class="group">
+            <div class="category">
+              <span class="pi pi-tag"></span>
+              <span>{{ products.category }}</span>
+            </div>
+            <div class="status status-{{ products.inventoryStatus | lowercase }}">
+              <span class="badge"></span>
+              <span>{{ products.inventoryStatus }}</span>
+            </div>
+          </div>
+          <div class="group">
+            <div class="name">{{ products.name }}</div>
+            <div class="description">{{ products.description }}</div>
+          </div>
+          <div class="rating">
+            <app-stars [value]="products.rating" [max]="5"></app-stars>
+          </div>
+          <div class="price-and-cart">
+            <div class="price">{{ products.price | currency:'USD':true:'.2' }}</div>
+            <button pButton type="button" icon="pi pi-shopping-cart" size="small"></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</main>

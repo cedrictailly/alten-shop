@@ -1,0 +1,11 @@
+{
+  "name": "alten-shop",
+  "version": "1.0.0",
+  "author": "Cédric Tailly",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "backend"
+  ]
+}

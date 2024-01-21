@@ -1,0 +1,73 @@
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.scss';
+@import 'app/config.scss';
+
+.fixed-inset {
+  position: fixed;
+  top     : 0;
+  bottom  : 0;
+  left    : 0;
+  right   : 0;
+  z-index : 9999;
+}
+
+.flex-center {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.scrollview {
+  overflow: auto;
+}
+
+p-button.app-hover-animated button {
+
+  span {
+    transition: transform 250ms ease-in-out;
+  }
+
+  &:hover {
+
+    .p-button-icon {
+      transform: translateX(+0.15rem);
+    }
+
+    .p-button-label {
+      transform: translateX(-0.15rem);
+    }
+  }
+}
+
+.p-dialog {
+
+  box-shadow: 0 0 4rem 0.5rem rgba(#000, 0.4) !important;
+
+  .p-dialog-header,
+  .p-dialog-content,
+  .p-dialog-footer {
+    padding: 0.5rem 1rem;
+  }
+
+  .p-dialog-header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .p-dialog-footer {
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
+
+  .p-dialog-header,
+  .p-dialog-footer {
+    background  : lighten($side-back, 72%);
+    border-color: lighten($side-back, 62%);
+  }
+}
+
+.p-component-overlay {
+  backdrop-filter: blur(5px);
+}

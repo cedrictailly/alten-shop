@@ -1,0 +1,13 @@
+main {
+  display        : flex;
+  flex-direction : row-reverse;
+  align-items    : center;
+  justify-content: space-between;
+  width          : 100%;
+}
+
+.login-details {
+  display    : flex;
+  align-items: center;
+  gap        : 0.8rem;
+}

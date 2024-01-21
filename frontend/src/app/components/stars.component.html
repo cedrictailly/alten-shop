@@ -1,0 +1,4 @@
+<div class="flex align-items-center gap-2">
+  <div class="pi pi-star-fill" *ngFor="let item of value <= 0 ? [] : [].constructor(clamp(value));"></div>
+  <div class="pi pi-star" *ngFor="let item of value >= max ? [] : [].constructor(clamp(max - value));"></div>
+</div>

@@ -1,0 +1,46 @@
+<main>
+
+  <div *ngIf="authService.logged" class="login-details">
+    <span>{{ authService.name }}</span>
+    <p-avatar label="{{ authService.avatar }}" size="large" shape="circle"></p-avatar>
+  </div>
+
+  <p-button *ngIf="authService.logged" label="Logout" icon="pi pi-chevron-left" size="small" [rounded]="true"
+    [outlined]="true" severity="secondary" class="app-hover-animated" (click)="onLogout()"></p-button>
+
+  <p-button *ngIf="!authService.logged" label="Login" icon="pi pi-chevron-right" size="small" [rounded]="true"
+    class="app-hover-animated" (click)=" onOpen()"></p-button>
+
+</main>
+
+<p-dialog [visible]="visible" [style]="{width: '50vw'}" [closable]="false" [modal]="true">
+
+  <p-header>
+    Login
+  </p-header>
+
+  <div class="p-fluid">
+
+    <p-message *ngIf="error.length > 0" severity="error" [text]="error"></p-message>
+
+    <form [formGroup]="form" (onSubmit)="onLogin()">
+      <div>
+        <label for="email">Email</label>
+        <input type="text" pInputText placeholder="email" formControlName="email" />
+      </div>
+      <div class="mt-3">
+        <label for="password">Password</label>
+        <input type="password" pInputText placeholder="password" formControlName="password" />
+      </div>
+    </form>
+
+  </div>
+
+  <p-footer>
+    <p-button label="Cancel" icon="pi pi-times" severity="secondary" [text]="true" (click)="onClose()"></p-button>
+    <p-button type="submit" label="Login" icon="pi pi-check" (click)="onLogin()"></p-button>
+  </p-footer>
+
+</p-dialog>
+
+<p-toast position="bottom-left"></p-toast>

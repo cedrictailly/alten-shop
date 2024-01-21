@@ -1,0 +1,119 @@
+@import './config.scss';
+
+.app-layout {
+
+  display              : grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows   : 58px 1fr;
+  grid-template-areas  :
+    "side top"
+    "side content";
+
+  position: fixed;
+  top     : 0;
+  left    : 0;
+  right   : 0;
+  bottom  : 0;
+  overflow: hidden;
+
+  >.app-content {
+    grid-area: content;
+    padding  : 1rem;
+  }
+
+  >.app-nav-top {
+    grid-area  : top;
+    display    : flex;
+    align-items: center;
+    padding    : 0 1rem;
+    background : $top-back;
+    color      : $top-text;
+
+    app-login {
+      width: 100%;
+    }
+  }
+
+  >.app-nav-side {
+    grid-area      : side;
+    background     : $side-back;
+    padding        : 0;
+    display        : flex;
+    flex-direction : column;
+    justify-content: start;
+    gap            : 0.5rem;
+
+    >h1 {
+      font-size      : 1.5rem;
+      font-weight    : normal;
+      line-height    : 3rem;
+      padding        : 0;
+      padding-left   : 0.8rem;
+      margin         : 0;
+      display        : flex;
+      flex-direction : row;
+      gap            : 0.5rem;
+      align-items    : center;
+      justify-content: start;
+
+      img {
+        height: 1.6rem;
+      }
+
+      a {
+        color          : $side-text;
+        text-decoration: none;
+      }
+    }
+
+    >ul {
+      list-style: none;
+      padding   : 0;
+      margin    : 0;
+      width     : 100%;
+
+      >li {
+
+        display        : flex;
+        flex-direction : row;
+        align-items    : center;
+        justify-content: start;
+        padding        : 0 0.8rem;
+        gap            : 0rem;
+
+
+        &,
+        * {
+          color     : $side-text;
+          transition: all 250ms ease-in-out;
+        }
+
+        a {
+          text-decoration: none;
+          padding        : 0.5rem;
+          height         : 100%;
+          width          : 100%;
+        }
+
+        &.active {
+
+          background: $side-active-back;
+
+          * {
+            color         : $side-active-text;
+            pointer-events: none;
+          }
+        }
+
+        &:hover:not(.active) {
+
+          background-color: $size-hover-back;
+
+          * {
+            transform: translateX(0.3rem);
+          }
+        }
+      }
+    }
+  }
+}
