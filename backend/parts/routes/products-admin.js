@@ -66,6 +66,15 @@ exports.setup = async ({express, models: {Product}}) => {
 
   express.put("/admin/products/:id", auth.logged, async (req, res) => {
 
+    if (await Product.count({
+      where: {id: req.params.id},
+    }) == 0) {
+      return res.status(404).json({
+        status: "error",
+        errors: [`Product ${req.params.id} not found`],
+      });
+    }
+
     try {
 
       await Product.update(req.body, {
@@ -77,11 +86,26 @@ exports.setup = async ({express, models: {Product}}) => {
 
     } catch (error) {
 
-      res.json({status: "error", errors: error.errors.map(e => e.message)});
+      res.json({
+        status: "error",
+        errors: error.errors.map(e => e.message),
+      });
     }
   });
 
   express.delete("/admin/products", auth.logged, async (req, res) => {
+
+    if (!Array.isArray(req.body.ids))
+      return res.status(400).send("Bad request");
+
+    if (await Product.count({
+      where: {id: {[Op.in]: req.body.ids}},
+    }) != new Set(req.body.ids).size) {
+      return res.status(404).json({
+        status: "error",
+        errors: ["One or more product(s) to deleted not found"],
+      });
+    }
 
     await Product.destroy({
       where: {

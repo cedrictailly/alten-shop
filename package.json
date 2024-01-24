@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "shared",
-    "backend"
+    "backend",
+    "frontend"
   ]
 }
